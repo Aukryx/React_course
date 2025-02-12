@@ -1,25 +1,20 @@
-## Learning Notes Template
+# Day 1: React Components Fundamentals
+**Date**: 2025-02-12
 
-### Date: 2025-02-12
-#### What I Learned Today
-- Basics componants structure
-- How to use it
-- Why it is useful
+## Core Concepts Learned
 
-### Componants :
-- To create a componant, you must first create a file with the .jsx entension (Javascript XML).
-- Then you must create a function that takes no arguments (NTMS : See if its gonna change further in the course).
-- You can use any Javascript features in the function
-- It's gonna return a mix of JS and HTML
-- Then, you need to export that componant by using :
+### 1. React Components Basics
+React components are the building blocks of React applications. They are reusable pieces of UI that can contain both logic and presentation.
+
+### 2. Component Creation
+To create a component:
+1. Create a new file with `.jsx` extension
+2. Define a function (using PascalCase naming)
+3. Return JSX (HTML-like syntax)
+4. Export the component
+
 ```jsx
-export default //name of your componant
-```
-
-Here's what it looks like :
-```jsx
-function Header(){
-    //Add any js feature you need
+function Header() {
     return (
         <header>
             <h1>My website</h1>
@@ -36,52 +31,97 @@ function Header(){
     );
 }
 
-export default Header
+export default Header;
 ```
 
-## How to use it :
-### Now that we have our componant that we can use anywhere in our code, we need to know how to use it.
-
-As any JS export function, we'll need to import it where we want to use it. Let's take our componants that you can find in the /src directory.
+### 3. Component Usage
+#### Importing Components
 ```jsx
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Food from './Food.jsx';
 ```
-### ! Don't forget uppercase for the name of the componant !
-I still don't know why it is important yet, but I've been told to do so but my guess is it is for syntax issues if you don't use uppercase.
 
-### Implementation
-Okay so now you have your beautiful componants ready and imported, now we want to use them : Since we're doing a app here we have our main file named App.jsx and the function that will display everything that we want.
+#### Using Components
+Components can be used in two equivalent ways:
 ```jsx
-function App(){
+// Self-closing tag
+<Food/>
 
-}
-```
-We will use them as followed :
-```jsx
-function App() {
-  return (
-    <>
-    <Header/>
-    <Food></Food>
-    <Footer/>
-    </>
-  ); 
-}
-```
-2 important points to note :
-- You can write the componant in 2 differants ways:
-```jsx
+// Regular tag
 <Food></Food>
 ```
+
+#### Multiple Components
+When using multiple components, they must be wrapped in a parent element:
 ```jsx
-<Food/>
+function App() {
+    return (
+        <>
+            <Header/>
+            <Food/>
+            <Footer/>
+        </>
+    );
+}
 ```
-That is doing the same thing so don't panic if you ever encounter one of those that you didn't know about.
 
-- You see that we have empty brackets embricking the componants : It's because you can't put multiples componants in the same return, so we use this trick in order to do it. Do not forget it.
+### 4. Styling in React
 
-## Why it is useful?
-### Reusable
-That the main thing with componant and React (for me yet), you can reuse your pieces of code anywhere very ergonomically. 
+React offers several approaches to styling components:
+
+#### A. External CSS
+Traditional CSS files imported into components. Simple but may cause naming conflicts in larger applications.
+
+#### B. CSS Modules
+```
+📂 Button/
+ ├── Button.jsx
+ └── Button.module.css
+```
+
+**Button.module.css:**
+```css
+.button {
+    background-color: hsl(200, 100%, 50%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+```
+
+**Button.jsx:**
+```jsx
+import styles from "./Button.module.css"
+
+function Button() {
+    return (
+        <button className={styles.button}>
+            Click me
+        </button>
+    );
+}
+```
+
+## Important Notes
+1. Component names must start with an uppercase letter (PascalCase)
+2. Use `className` instead of `class` for CSS classes in JSX
+3. Components must return a single parent element
+4. CSS Modules help prevent styling conflicts
+
+## Questions for Further Learning
+- [ ] What are props and how do they work?
+- [ ] How do components handle events?
+- [ ] What are React Hooks?
+- [ ] When should I split a component into smaller components?
+
+## Resources Used Today
+- React Documentation
+- Course Materials (add specific sources)
+
+## Next Steps
+- Learn about component props
+- Explore component state management
+- Practice creating more complex components

@@ -1,4 +1,4 @@
-# Header Component
+# Food Component
 
 ## Purpose
 A navigation header component that displays the website title and main navigation menu. This component appears at the top of the website and includes:
