@@ -71,7 +71,37 @@ function App() {
 React offers several approaches to styling components:
 
 #### A. External CSS
-Traditional CSS files imported into components. Simple but may cause naming conflicts in larger applications.
+Traditional CSS files imported into components.
+
+```css
+/* styles.css */
+.button {
+    background-color: hsl(200, 100%, 50%);
+    color: white;
+    padding: 10px 20px;
+}
+```
+
+```jsx
+import './styles.css';
+
+function Button() {
+    return <button className="button">Click me</button>;
+}
+```
+
+**Pros:**
+- Familiar workflow for developers coming from traditional web development
+- Easy to implement global styles
+- Good for small projects or quick prototypes
+- Works well with existing CSS frameworks
+- Easier to implement responsive designs
+
+**Cons:**
+- Potential naming conflicts in larger applications
+- No built-in scoping, styles can leak
+- Hard to track which styles are used where
+- Can become difficult to maintain in large applications
 
 #### B. CSS Modules
 ```
@@ -80,36 +110,91 @@ Traditional CSS files imported into components. Simple but may cause naming conf
  └── Button.module.css
 ```
 
-**Button.module.css:**
 ```css
+/* Button.module.css */
 .button {
     background-color: hsl(200, 100%, 50%);
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
 }
 ```
 
-**Button.jsx:**
 ```jsx
 import styles from "./Button.module.css"
 
 function Button() {
+    return <button className={styles.button}>Click me</button>;
+}
+```
+
+**Pros:**
+- Local scoping prevents style conflicts
+- Clear connection between component and its styles
+- Better organization with component-based architecture
+- TypeScript support for CSS class names
+- Good for team development
+
+**Cons:**
+- Requires additional setup
+- Makes global styles more complicated to implement
+- Learning curve for developers new to modules
+- Can lead to duplicate CSS if not managed properly
+- Extra boilerplate code needed
+
+#### C. Inline Styling
+```jsx
+function Button() {
     return (
-        <button className={styles.button}>
+        <button style={{
+            backgroundColor: 'hsl(200, 100%, 50%)',
+            color: 'white',
+            padding: '10px 20px'
+        }}>
             Click me
         </button>
     );
 }
 ```
 
+**Pros:**
+- Easy to understand
+- No class name conflicts possible
+- Great for isolated elements with minimal styling
+- Dynamic styles are easier to implement
+- No additional files needed
+
+**Cons:**
+- Gets messy in larger applications
+- Reduces component readability with complex styles
+- Not suitable for responsive design
+- No CSS reuse across components
+- Cannot use media queries or pseudo-selectors
+
+### Recommended Usage:
+- **External CSS**: Use for:
+  - Global styles (reset, typography, themes)
+  - Small projects
+  - When working with CSS frameworks
+  
+- **CSS Modules**: Best for:
+  - Component-specific styles
+  - Large applications
+  - Team projects
+  - When style isolation is important
+  
+- **Inline Styles**: Suitable for:
+  - Simple, one-off styling needs
+  - Dynamic styles based on props/state
+  - Quick prototypes
+  - Small components with minimal styling
+
+Remember: These are guidelines rather than strict rules. Choose the approach that best fits your project's needs and team preferences.
+
 ## Important Notes
 1. Component names must start with an uppercase letter (PascalCase)
 2. Use `className` instead of `class` for CSS classes in JSX
 3. Components must return a single parent element
-4. CSS Modules help prevent styling conflicts
+4. CSS Modules help prevent styling conflicts but it requires additionnal setup and make the use of globals harder
 
 ## Questions for Further Learning
 - [ ] What are props and how do they work?

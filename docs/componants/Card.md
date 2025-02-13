@@ -52,4 +52,4 @@ export default App
 
 ## Notes
 
-Cards like this are widely used on the web, this here is a basic componant but you can adapt it as you need by adding descriptions, links, style effects when you hover or click it. But this is not a doc about style.
+Cards like this are widely used on the web, this here is a basic component but you can adapt it as you need by adding descriptions, links, style effects when you hover or click it. But this is not a doc about style.
