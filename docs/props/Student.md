@@ -1,44 +1,112 @@
-# Header Component
+# Student Component
 
 ## Purpose
-A navigation header component that displays the website title and main navigation menu. This component appears at the top of the website and includes:
-- Website title ("My website")
-- Navigation menu with 4 main links
-- Horizontal line separator
+A reusable component that displays student information including their name, age, and student status. This component demonstrates the use of props, PropTypes for type checking, and default values.
 
 ## Component Structure
 ```jsx
-function Student(props){
+import PropTypes from "prop-types"
+
+function Student({name = "Guest", age = 0, isStudent = false}){
     return(
         <div className="student">
-            <p>Name: {props.name}</p>
-            <p>Age: {props.age}</p>
-            <p>Student: {props.isStudent ? "Yes" : "No"}</p>
+            <p>Name: {name}</p>
+            <p>Age: {age}</p>
+            <p>Student: {isStudent ? "Yes" : "No"}</p>
         </div>
     );
+}
+
+Student.propTypes = {
+    name: PropTypes.string,
+    age: PropTypes.number,
+    isStudent: PropTypes.bool,
 }
 
 export default Student
 ```
 
-## Usage
+## Props Explanation
+
+### Basic Props
+The component accepts three props:
+- `name`: Student's name (string)
+- `age`: Student's age (number)
+- `isStudent`: Student status (boolean)
+
+### Props Destructuring
+Instead of using `props.name`, `props.age`, etc., the component uses destructuring:
+```jsx
+function Student({name, age, isStudent})
+```
+This provides cleaner syntax and direct access to prop values.
+
+### Default Values
+Default values are set using parameter defaults:
+```jsx
+{name = "Guest", age = 0, isStudent = false}
+```
+These values are used when props are not provided:
+- If no name → "Guest"
+- If no age → 0
+- If no isStudent → false
+
+### PropTypes
+PropTypes provide runtime type checking:
+```jsx
+Student.propTypes = {
+    name: PropTypes.string,
+    age: PropTypes.number,
+    isStudent: PropTypes.bool,
+}
+```
+This helps catch bugs by validating:
+- `name` should be a string
+- `age` should be a number
+- `isStudent` should be a boolean
+
+## Usage Examples
+
+### Basic Usage
+```jsx
+<Student 
+    name="Spongebob" 
+    age={30} 
+    isStudent={true}
+/>
+```
+
+### With Default Values
+```jsx
+<Student />  // Uses all defaults
+<Student name="Patrick" />  // Only name provided, others default
+```
+
+### Common Patterns
 ```jsx
 import Student from "./Student.jsx";
 
 function App() {
   return (
     <>
-    <Student name="Spongebob" age={30} isStudent={true}/>
-    <Student name="Patrick" age={42} isStudent={false}/>
-    <Student name="Squiward" age={50} isStudent={false}/>
-    <Student name="Sandy" age={27} isStudent={true}/>
+      <Student name="Spongebob" age={30} isStudent={true}/>
+      <Student name="Patrick" age={42} isStudent={false}/>
+      <Student name="Squiward" age={50} isStudent={false}/>
+      <Student name="Sandy" age={27} isStudent={true}/>
     </>
   ); 
 }
-
-export default App
 ```
 
-## Notes
+## Important Notes
+1. Always pass numbers in curly braces: `age={30}` not `age="30"`
+2. Always pass booleans in curly braces: `isStudent={true}`
+3. Strings can be passed with quotes: `name="Spongebob"`
+4. Default values will be used for any missing props
+5. PropTypes will help catch common mistakes during development
 
-[More info about props here](https://github.com/Aukryx/React_course/blob/main/docs/learning/day2.md)
+## Future Improvements
+- [ ] Add validation for age range
+- [ ] Add more student information (e.g., grade, major)
+- [ ] Add styling for different student status
+- [ ] Consider adding required prop validation

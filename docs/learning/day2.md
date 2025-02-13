@@ -1,4 +1,4 @@
-# Day 1: React Components Fundamentals
+# Day 2: React Components Fundamentals
 **Date**: 2025-02-13
 
 ## Core Concepts Learned
@@ -46,3 +46,5 @@ You can reuse the same component with different props:
 ```
 
 Each instance of `Student` displays different information based on the props it receives.
+<br>
+[Go here to get more information about prop types](../../docs/props/Student.md)
