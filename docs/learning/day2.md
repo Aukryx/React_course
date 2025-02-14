@@ -1,4 +1,4 @@
-# Day 2: React Components Fundamentals
+# Day 2: Props fundamentals
 **Date**: 2025-02-13
 
 ## Core Concepts Learned
