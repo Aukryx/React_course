@@ -1,4 +1,4 @@
-import List from './List.jsx'
+import ClickableButton from './ClickableButton.jsx';
 
 function App(){
 
@@ -14,10 +14,7 @@ function App(){
                       {id: 9, name: "corn", calories: 63},
                       {id: 10, name: "broccoli", calories: 50}]
   return (
-    <>
-    {fruits.length > 0 && <List items={fruits} category="Fruits"/>}
-    {vegetables.length > 0 && <List items={vegetables} category="Vegetables"/>}
-    </>
+<ClickableButton></ClickableButton>
   ); 
 }
 

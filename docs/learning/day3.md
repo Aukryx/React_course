@@ -49,15 +49,6 @@ Benefits:
 - [ ] When to use conditional rendering vs. multiple components?
 - [ ] How does conditional rendering affect performance?
 
-## Resources Used Today
-- React Documentation
-- Component Examples
-- Props Documentation
-
-## Next Steps
-- Explore complex conditional rendering scenarios
-- Learn about handling multiple conditions
-- Study component composition with conditional rendering
 
 ### 5. List Rendering
 List rendering is a fundamental technique in React for displaying arrays of data as UI elements.
@@ -120,12 +111,85 @@ Benefits:
 - [ ] How to implement infinite scrolling?
 - [ ] When to use virtual scrolling for long lists?
 
+### 8. Event Handling in React
+Event handling allows components to respond to user interactions.
+
+#### A. Event Handler Functions
+Ways to define event handlers:
+```jsx
+// Arrow function definition
+const handClick = (e) => {
+    // Event handling logic
+}
+
+// Alternative function syntax
+function handleClick(e) {
+    // Event handling logic
+}
+```
+
+Benefits:
+- Clean, reusable event handling logic
+- Access to event object
+- Scope control through arrow functions
+
+#### B. Event Binding
+Methods to bind events to elements:
+```jsx
+// Inline arrow function
+<button onClick={(e) => handClick(e)}>
+
+// Direct function reference
+<button onClick={handleClick}>
+
+// Inline handling
+<button onClick={(e) => e.target.textContent = "New Text"}>
+```
+
+Benefits:
+- Flexible event handling approaches
+- Easy passing of additional parameters
+- Direct access to event object
+
+#### C. The Event Object
+React's synthetic event object provides:
+- `e.target`: Reference to the DOM element
+- `e.preventDefault()`: Prevents default behavior
+- `e.stopPropagation()`: Stops event bubbling
+
+Benefits:
+- Cross-browser consistency
+- Access to event properties
+- DOM manipulation capabilities
+
+### Common React Events
+1. Mouse Events:
+   - `onClick`
+   - `onMouseEnter`
+   - `onMouseLeave`
+
+2. Form Events:
+   - `onChange`
+   - `onSubmit`
+   - `onFocus`
+
+3. Keyboard Events:
+   - `onKeyDown`
+   - `onKeyUp`
+   - `onKeyPress`
+
+## Additional Questions for Further Learning
+- [ ] How to handle complex event interactions?
+- [ ] What are event bubbling and capturing?
+- [ ] When to use event delegation?
+- [ ] How to optimize event handlers?
+
 ## Resources Used Today
-- React Documentation
-- Array Methods Documentation
-- PropTypes Documentation
+- React Event Handling Documentation
+- JavaScript Events Documentation
+- React Synthetic Events Guide
 
 ## Next Steps
-- Practice list filtering and sorting
-- Learn about list performance optimization
-- Explore more complex list interactions
+- Explore more complex event handling patterns
+- Learn about event bubbling and capturing
+- Practice form event handling
