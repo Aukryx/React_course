@@ -178,18 +178,86 @@ Benefits:
    - `onKeyUp`
    - `onKeyPress`
 
+### 9. Event Handling with Media Elements
+Handling events on images and other media elements requires special considerations.
+
+#### A. Image Event Handling
+Example implementations:
+```jsx
+// Hiding an image on click
+const handleClick = (e) => e.target.style.display = "none"
+
+// Changing image source
+const handleClick = (e) => e.target.src = "newImage.png"
+
+// Adding/removing classes
+const handleClick = (e) => e.target.classList.toggle("hidden")
+```
+
+Benefits:
+- Direct manipulation of image properties
+- Simple visibility control
+- Dynamic media interactions
+
+#### B. DOM Style Manipulation
+Common patterns for visual changes:
+```jsx
+// Display property
+e.target.style.display = "none"
+
+// Visibility property
+e.target.style.visibility = "hidden"
+
+// Opacity change
+e.target.style.opacity = "0"
+```
+
+Benefits:
+- Multiple ways to handle visibility
+- Fine-grained control over appearance
+- Immediate visual feedback
+
+#### C. Best Practices for Media Events
+1. Image Loading Events:
+   - `onLoad`
+   - `onError`
+   - `onAbort`
+
+2. Common Image Interactions:
+   - Click to zoom
+   - Click to hide/show
+   - Hover effects
+   - Gallery navigation
+
+3. Considerations:
+   - Image loading states
+   - Error handling
+   - Accessibility
+   - Performance impact
+
 ## Additional Questions for Further Learning
 - [ ] How to handle complex event interactions?
 - [ ] What are event bubbling and capturing?
 - [ ] When to use event delegation?
 - [ ] How to optimize event handlers?
+- [ ] How to handle image loading states?
+- [ ] What are best practices for image optimization?
+- [ ] How to implement image galleries?
+- [ ] When to use CSS vs. JavaScript for image effects?
+
 
 ## Resources Used Today
 - React Event Handling Documentation
 - JavaScript Events Documentation
 - React Synthetic Events Guide
+- DOM Manipulation Guide
+- Image Optimization Best Practices
+- Media Events Documentation
 
 ## Next Steps
 - Explore more complex event handling patterns
 - Learn about event bubbling and capturing
 - Practice form event handling
+- Explore image optimization techniques
+- Learn about media event handling patterns
+- Practice building image galleries
