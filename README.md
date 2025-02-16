@@ -1,4 +1,4 @@
-# Root README.md (place in project root)
+# Root README.md
 # My React Project
 
 ## About
