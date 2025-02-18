@@ -1,8 +1,8 @@
-import Counter from "./Counter.jsx";
+import Change from "./Change.jsx";
 function App(){
 
   return (
-<Counter />
+< Change/>
   ); 
 }
 

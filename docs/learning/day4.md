@@ -122,6 +122,91 @@ Best Practices:
 - [ ] How to implement state limits/boundaries?
 - [ ] When to use controlled vs uncontrolled components?
 
+### 6. The onChange Event Handler
+
+#### A. What is onChange?
+The onChange event handler:
+- Fires when an input's value changes
+- Provides access to the new value
+- Enables real-time input tracking
+
+#### B. Basic Syntax
+```jsx
+// Function definition
+function handleChange(event) {
+    setState(event.target.value);
+}
+
+// Usage in JSX
+<input onChange={handleChange} />
+```
+
+#### C. When to Use onChange
+1. Real-time Updates:
+   - Form input tracking
+   - Search functionality
+   - Input validation
+   - Live previews
+
+2. User Input Capture:
+   - Text fields
+   - Number inputs
+   - Select dropdowns
+   - Radio buttons
+   - Checkboxes
+   - File inputs
+
+#### D. Event Object Properties
+Common event.target properties:
+```jsx
+event.target.value     // Input value
+event.target.checked   // Checkbox state
+event.target.type      // Input type
+event.target.name      // Input name
+event.target.files     // File input
+```
+
+### 7. onChange Implementation Patterns
+
+#### A. Direct State Update
+```jsx
+onChange={(e) => setState(e.target.value)}
+```
+Use when:
+- Simple value updates
+- No additional processing needed
+- Single responsibility
+
+#### B. Handler Function
+```jsx
+function handleChange(e) {
+    setState(e.target.value);
+}
+```
+Use when:
+- Multiple operations needed
+- Value validation required
+- Complex state updates
+
+#### C. Dynamic Updates
+```jsx
+function handleChange(e) {
+    if (e.target.value.length <= maxLength) {
+        setState(e.target.value);
+    }
+}
+```
+Use when:
+- Conditional updates needed
+- Input validation required
+- Value transformation needed
+
+## Questions for Further Learning
+- [ ] How to optimize onChange handlers?
+- [ ] When to debounce onChange events?
+- [ ] How to handle multiple inputs with one handler?
+- [ ] What are best practices for onChange validation?
+
 ## Resources Used Today
 - React Hooks Documentation
 - useState API Reference
@@ -129,3 +214,6 @@ Best Practices:
 - React Patterns Documentation
 - UI State Management Guide
 - Component Design Patterns
+- React Events Documentation
+- DOM Event Handling Guide
+- Input Event Best Practices
