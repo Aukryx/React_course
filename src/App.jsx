@@ -1,8 +1,8 @@
-import Change from "./Change.jsx";
+import ColorPicker from "./ColorPicker.jsx";
 function App(){
 
   return (
-< Change/>
+< ColorPicker/>
   ); 
 }
 
