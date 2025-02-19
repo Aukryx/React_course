@@ -1,8 +1,8 @@
-import Counter2 from "./Counter2.jsx";
+import Object from "./Object";
 function App(){
 
   return (
-< Counter2/>
+< Object/>
   ); 
 }
 

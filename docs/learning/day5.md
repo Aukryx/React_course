@@ -36,42 +36,64 @@ Components:
 - `newState`: The new state value to be set
 - The arrow function ensures you're working with the latest state
 
-#### B. Common Patterns
+### 4. Object State Management
 
-1. Simple Updates:
+#### A. Updating Objects with Spread Operator
+When working with object state, always create a new object and use the spread operator to maintain immutability:
+
 ```jsx
-setCount(prevCount => prevCount + 1);
-setCount(prevCount => prevCount - 1);
+const [user, setUser] = useState({name: "John", age: 30});
+
+// Correct way to update object state
+setUser(prevUser => ({...prevUser, age: prevUser.age + 1}));
 ```
 
-2. Complex Updates:
+#### B. Common Patterns with Objects
+
+1. Single Property Update:
 ```jsx
-setUser(prevUser => ({
-    ...prevUser,
-    age: prevUser.age + 1,
-    visits: prevUser.visits + 1
+setState(prevState => ({...prevState, property: newValue}));
+```
+
+2. Multiple Property Updates:
+```jsx
+setState(prevState => ({
+    ...prevState,
+    prop1: newValue1,
+    prop2: newValue2
 }));
 ```
 
-3. Conditional Updates:
+3. Nested Object Updates:
 ```jsx
-setScore(prevScore => 
-    prevScore < maxScore ? prevScore + 1 : prevScore
-);
+setState(prevState => ({
+    ...prevState,
+    nested: {
+        ...prevState.nested,
+        property: newValue
+    }
+}));
 ```
 
-### 4. Best Practices
+### 5. Best Practices
 
 1. Always use updater functions when:
    - The new state depends on the previous state
    - Multiple state updates occur in the same function
    - State updates happen in async operations
+   - Working with object or array state
 
-2. Keep updater functions pure:
-   - No side effects
-   - Only use the previous state to determine the new state
-   - Return consistent results for the same input
+2. Maintain Immutability:
+   - Always create new objects/arrays instead of mutating existing ones
+   - Use spread operator to copy existing state
+   - Never modify state directly
 
-3. Use meaningful names for the previous state parameter:
-   - `prevState`, `prevCount`, `prevUser`, etc.
-   - Avoid generic names like `state` or `s`
+3. Keep Updates Clean:
+   - Use separate update functions for different properties
+   - Handle one responsibility per update function
+   - Use meaningful names for handler functions
+
+4. Event Handling:
+   - Create specific handler functions for each input/interaction
+   - Use the event object to access new values
+   - Keep handlers focused on their specific update task
