@@ -1,8 +1,8 @@
-import Object from "./Object";
+import ArrayOfObjects from "./ArrayOfObjects";
 function App(){
 
   return (
-< Object/>
+< ArrayOfObjects/>
   ); 
 }
 

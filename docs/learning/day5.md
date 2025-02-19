@@ -64,36 +64,99 @@ setState(prevState => ({
 }));
 ```
 
-3. Nested Object Updates:
+### 5. Array State Management
+
+#### A. Common Array Operations
+
+1. Adding Items:
 ```jsx
-setState(prevState => ({
-    ...prevState,
-    nested: {
-        ...prevState.nested,
-        property: newValue
-    }
-}));
+setArray(prevArray => [...prevArray, newItem]);
 ```
 
-### 5. Best Practices
+2. Removing Items:
+```jsx
+setArray(prevArray => prevArray.filter((item, index) => index !== targetIndex));
+```
 
-1. Always use updater functions when:
-   - The new state depends on the previous state
-   - Multiple state updates occur in the same function
-   - State updates happen in async operations
-   - Working with object or array state
+3. Updating Items:
+```jsx
+setArray(prevArray => prevArray.map((item, index) => 
+    index === targetIndex ? newValue : item
+));
+```
 
-2. Maintain Immutability:
-   - Always create new objects/arrays instead of mutating existing ones
-   - Use spread operator to copy existing state
-   - Never modify state directly
+4. Inserting Items:
+```jsx
+setArray(prevArray => [
+    ...prevArray.slice(0, index),
+    newItem,
+    ...prevArray.slice(index)
+]);
+```
 
-3. Keep Updates Clean:
-   - Use separate update functions for different properties
+#### B. Array Methods to Know
+- `map()`: Transform elements
+- `filter()`: Remove elements
+- `concat()` or spread: Add elements
+- `slice()`: Extract portions
+- Never use methods that mutate the original array (`push`, `pop`, `splice`)
+
+### 6. Arrays of Objects State Management
+
+#### A. Managing Multiple States
+When working with arrays of objects, you might need to manage:
+1. The array of objects itself
+2. Form states for new object creation
+3. Individual object properties
+
+#### B. Common Patterns
+
+1. Adding Objects to Array:
+```jsx
+setArray(prevArray => [...prevArray, newObject]);
+```
+
+2. Removing Objects:
+```jsx
+setArray(prevArray => prevArray.filter((_, index) => index !== targetIndex));
+```
+
+3. Updating Objects:
+```jsx
+setArray(prevArray => prevArray.map((item, index) => 
+    index === targetIndex ? { ...item, property: newValue } : item
+));
+```
+
+#### C. Form State Management
+When creating new objects, you can:
+1. Use separate state variables for each property
+2. Reset form states after adding object
+3. Use controlled inputs for better user experience
+
+### 7. Best Practices
+
+1. State Updates:
+   - Always use updater functions for state changes
+   - Maintain immutability in all operations
    - Handle one responsibility per update function
-   - Use meaningful names for handler functions
 
-4. Event Handling:
-   - Create specific handler functions for each input/interaction
-   - Use the event object to access new values
-   - Keep handlers focused on their specific update task
+2. Form Management:
+   - Use controlled inputs
+   - Clear form fields after submission
+   - Validate input data before creating objects
+
+3. Array Operations:
+   - Use immutable array methods
+   - Provide unique keys for mapped elements
+   - Consider using IDs instead of array indices
+
+4. Object Handling:
+   - Create new object references
+   - Use spread operator for object copies
+   - Keep object structure consistent
+
+5. Error Prevention:
+   - Validate input data
+   - Handle edge cases
+   - Prevent duplicate entries if needed
