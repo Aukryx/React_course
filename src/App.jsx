@@ -1,8 +1,9 @@
-import ToDoList from "./ToDoList";
+import WindowSize from "./WindowSize"
+
 function App(){
 
   return (
-< ToDoList/>
+< WindowSize/>
   ); 
 }
 
