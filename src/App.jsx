@@ -1,9 +1,9 @@
-import WindowSize from "./WindowSize"
+import DigitalClock from "./DigitalClock";
 
 function App(){
 
   return (
-< WindowSize/>
+< DigitalClock/>
   ); 
 }
 
