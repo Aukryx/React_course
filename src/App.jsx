@@ -1,9 +1,9 @@
-import UseRef from "./UseRef";
+import Stopwatch from "./Stopwatch";
 
 function App(){
 
   return (
-< UseRef/>
+<Stopwatch/>
   ); 
 }
 

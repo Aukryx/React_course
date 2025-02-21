@@ -295,3 +295,137 @@ function Timer() {
 - Use refs to avoid unnecessary re-renders
 - Don't rely on refs for rendering logic
 - Combine with useCallback when needed
+
+# Advanced Hook Combinations
+
+## Combining useState, useRef, and useEffect
+
+### Time-Based Applications
+Using multiple hooks together is common for time-based features:
+
+1. State for UI Updates
+```jsx
+const [isRunning, setIsRunning] = useState(false);
+const [elapsedTime, setElapsedTime] = useState(0);
+```
+- Controls visual updates
+- Manages component rendering
+
+2. Refs for Time Tracking
+```jsx
+const intervalIdRef = useRef(null);
+const startTimeRef = useRef(0);
+```
+- Stores interval IDs
+- Maintains timestamps
+- Prevents render-related issues
+
+3. Effect for Time Management
+```jsx
+useEffect(() => {
+    if (isRunning) {
+        intervalIdRef.current = setInterval(() => {
+            setElapsedTime(Date.now() - startTimeRef.current);
+        }, 10);
+    }
+    return () => clearInterval(intervalIdRef.current);
+}, [isRunning]);
+```
+- Handles interval creation/cleanup
+- Responds to state changes
+- Maintains timing accuracy
+
+### When to Combine Hooks
+
+1. Time Tracking
+- useState for display values
+- useRef for internal timing
+- useEffect for intervals
+
+2. Animation Control
+- useState for animation states
+- useRef for animation frames
+- useEffect for cleanup
+
+3. Event Handling
+- useState for event states
+- useRef for event listeners
+- useEffect for binding/cleanup
+
+## Best Practices for Combined Hooks
+
+### 1. State vs Ref Decision
+- Use state for visual updates
+- Use refs for internal tracking
+- Consider update frequency
+
+### 2. Effect Dependencies
+- Include all relevant states
+- Exclude ref values
+- Handle cleanup properly
+
+### 3. Performance Optimization
+- Minimize state updates
+- Use refs for frequent changes
+- Clean up intervals/timeouts
+
+## Common Patterns
+
+### 1. Timer Pattern
+```jsx
+function Timer() {
+    const [time, setTime] = useState(0);
+    const intervalRef = useRef();
+    
+    useEffect(() => {
+        intervalRef.current = setInterval(() => {
+            setTime(t => t + 1);
+        }, 1000);
+        return () => clearInterval(intervalRef.current);
+    }, []);
+}
+```
+
+### 2. Animation Pattern
+```jsx
+function Animation() {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const frameRef = useRef();
+    
+    useEffect(() => {
+        if (isPlaying) {
+            frameRef.current = requestAnimationFrame(animate);
+            return () => cancelAnimationFrame(frameRef.current);
+        }
+    }, [isPlaying]);
+}
+```
+
+### 3. Event Tracking Pattern
+```jsx
+function EventTracker() {
+    const [events, setEvents] = useState([]);
+    const lastEventRef = useRef();
+    
+    useEffect(() => {
+        lastEventRef.current = events[events.length - 1];
+    }, [events]);
+}
+```
+
+## Debugging Combined Hooks
+
+### 1. Common Issues
+- Stale closures
+- Missing cleanups
+- Race conditions
+
+### 2. Solutions
+- Proper dependency arrays
+- Consistent cleanup
+- Clear state/ref separation
+
+### 3. Testing Strategies
+- Test state changes
+- Verify ref updates
+- Check cleanup execution
